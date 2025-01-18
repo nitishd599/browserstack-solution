@@ -1,0 +1,34 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Parallel Suite" parallel="tests" thread-count="1">
+
+    <test name="Chrome Test">
+        <parameter name="os" value="OS X" />
+        <parameter name="os_version" value="Catalina" />
+        <parameter name="browser" value="Chrome" />
+        <parameter name="browser_version" value="85.0" />
+        <classes>
+            <class name="SpanishArticleTest" />
+        </classes>
+    </test>
+
+    <test name="Firefox Test">
+        <parameter name="browser" value="Firefox" />
+        <parameter name="os" value="OS X" />
+        <parameter name="os_version" value="Catalina" />
+        <parameter name="browser_version" value="85.0" />
+        <classes>
+            <class name="SpanishArticleTest" />
+        </classes>
+    </test>
+
+    <test name="Edge Test">
+        <parameter name="browser" value="Edge" />
+        <parameter name="os" value="OS X" />
+        <parameter name="os_version" value="Catalina" />
+        <parameter name="browser_version" value="85.0" />
+        <classes>
+            <class name="SpanishArticleTest" />
+        </classes>
+    </test>
+
+</suite>
