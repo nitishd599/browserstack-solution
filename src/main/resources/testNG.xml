@@ -1,31 +1,51 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Parallel Suite" parallel="tests" thread-count="1">
+<suite name="BrowserStack Cloud Execution" parallel="tests" thread-count="5">
 
-    <test name="Chrome Test">
-        <parameter name="os" value="OS X" />
-        <parameter name="os_version" value="Catalina" />
+    <test name="Windows - Chrome Test">
         <parameter name="browser" value="Chrome" />
-        <parameter name="browser_version" value="85.0" />
+        <parameter name="os" value="Windows" />
+        <parameter name="os_version" value="10" />
+        <parameter name="browser_version" value="120.0" />
         <classes>
             <class name="SpanishArticleTest" />
         </classes>
     </test>
 
-    <test name="Firefox Test">
-        <parameter name="browser" value="Firefox" />
+    <test name="Mac - Safari Test">
+        <parameter name="browser" value="Safari" />
         <parameter name="os" value="OS X" />
-        <parameter name="os_version" value="Catalina" />
-        <parameter name="browser_version" value="85.0" />
+        <parameter name="os_version" value="Monterey" />
+        <parameter name="browser_version" value="15.6" />
         <classes>
             <class name="SpanishArticleTest" />
         </classes>
     </test>
 
-    <test name="Edge Test">
-        <parameter name="browser" value="Edge" />
+    <test name="iPhone 13 - Chrome Test">
+        <parameter name="browserName" value="Chromium" />
+        <parameter name="deviceName" value="iPhone 13" />
+        <parameter name="osVersion" value="15" />
+        <parameter name="deviceOrientation" value="portrait" />
+        <classes>
+            <class name="SpanishArticleTest" />
+        </classes>
+    </test>
+
+    <test name="Mac - Chrome Test">
+        <parameter name="browser" value="Chrome" />
         <parameter name="os" value="OS X" />
-        <parameter name="os_version" value="Catalina" />
-        <parameter name="browser_version" value="85.0" />
+        <parameter name="os_version" value="Monterey" />
+        <parameter name="browser_version" value="129.0" />
+        <classes>
+            <class name="SpanishArticleTest" />
+        </classes>
+    </test>
+
+    <test name="Galaxy S23 - Chrome Test">
+        <parameter name="browserName" value="chrome" />
+        <parameter name="deviceName" value="Samsung Galaxy S23 Ultra" />
+        <parameter name="osVersion" value="13.0" />
+        <parameter name="deviceOrientation" value="portrait" />
         <classes>
             <class name="SpanishArticleTest" />
         </classes>

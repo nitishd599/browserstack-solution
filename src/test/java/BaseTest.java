@@ -17,13 +17,25 @@ public class BaseTest {
     private static final String URL = "https://" + browserStackUserName + ":" + browserStackAutomateKey + "@hub-cloud.browserstack.com/wd/hub";
     public static int implicitWaitTime = Integer.parseInt(Helper.getProperty("defaultTimeout"));
 
-    @Parameters({"browser", "browser_version", "os", "os_version"})
+    @Parameters({"browser", "browser_version", "os", "os_version", "deviceOrientation"})
     @BeforeClass
-    public void setUp(String browserName, String browser_version, String os, String os_version, Method name) {
+    public void setUp(@Optional("Chrome") String browserName,
+                      @Optional("129.0") String browser_version,
+                      @Optional("OS X") String os,
+                      @Optional("Monterey") String os_version,
+                      @Optional("portrait") String deviceOrientation,
+                      @Optional("iPhone 13") String deviceName,
+                      Method method) {
         boolean isBrowserStackExecution= Boolean.parseBoolean(Helper.getProperty("IsBrowserStackExecution"));
         if(isBrowserStackExecution) {
             // Setting driver for execution on browserstack cloud
-            driver = BrowserManager.getBrowserStackDriver(browserName, os, os_version, browser_version, URL);
+            if (deviceName != null && !deviceName.isEmpty()) {
+                // Mobile Device execution on BrowserStack
+                driver = BrowserManager.getBrowserStackMobileDriver(deviceName, browserName, os_version, deviceOrientation, URL);
+            } else {
+                // Desktop browser execution on BrowserStack
+                driver = BrowserManager.getBrowserStackDriver(browserName, os, os_version, browser_version, URL);
+            }
         } else {
             // Setting driver for local execution
             driver = BrowserManager.getDriver(browserName);

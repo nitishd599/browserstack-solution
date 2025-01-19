@@ -40,16 +40,16 @@ public class BrowserManager {
         DesiredCapabilities caps = new DesiredCapabilities();
 
         caps.setCapability("os", os);
-        caps.setCapability("os_version", os_version);
-        caps.setCapability("browser_version", browser_version);
+        caps.setCapability("osVersion", os_version);
+        caps.setCapability("browserVersion", browser_version);
 
-        // Set browser-specific capabilities
+        // Setting browser-specific capabilities
         if (browserName.equalsIgnoreCase("Chrome")) {
-            caps.setCapability("browser", "Chrome");
+            caps.setCapability("browserName", "Chrome");
         } else if (browserName.equalsIgnoreCase("Firefox")) {
-            caps.setCapability("browser", "Firefox");
-        } else if (browserName.equalsIgnoreCase("Edge")) {
-            caps.setCapability("browser", "Edge");
+            caps.setCapability("browserName", "Firefox");
+        } else if (browserName.equalsIgnoreCase("Safari")) {
+            caps.setCapability("browserName", "Safari");
         } else {
             throw new IllegalArgumentException("Unsupported BrowserStack browser: " + browserName);
         }
@@ -59,6 +59,26 @@ public class BrowserManager {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
+
+        return driver;
+    }
+
+    // Mobile Device-specific BrowserStack Driver
+    public static WebDriver getBrowserStackMobileDriver(String deviceName, String browserName, String os_version, String deviceOrientation, String remoteURL) {
+        WebDriver driver = null;
+        DesiredCapabilities caps = new DesiredCapabilities();
+
+        caps.setCapability("deviceName", deviceName);
+        caps.setCapability("osVersion", os_version);
+        caps.setCapability("browserName", browserName);
+        caps.setCapability("deviceOrientation", deviceOrientation);
+
+        try {
+            driver = new RemoteWebDriver(new URL(remoteURL), caps);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
         return driver;
     }
 }
